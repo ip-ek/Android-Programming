@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    tools:context="com.ipk.mobilodev.MainActivity">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login_email"></ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_user"></ImageView>
+
+        <EditText
+            android:id="@+id/main_username"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="7"
+            android:backgroundTint="@color/colorAccent"
+            android:hint="Kullanıcı Adı"></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_password"></ImageView>
+
+        <EditText
+            android:id="@+id/main_password"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="7"
+            android:backgroundTint="@color/colorAccent"
+            android:hint="Şifre"
+            android:inputType="textPassword"></EditText>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/main_login"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:text="Giriş"></Button>
+
+
+</LinearLayout>

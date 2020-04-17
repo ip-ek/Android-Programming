@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ipk.mobilodev.SettingsActivity"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/settings_username"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+    </TextView>
+    <RadioGroup
+        android:id="@+id/settings_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+        <RadioButton
+            android:id="@+id/settings_female"
+            android:text="Kadın"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp">
+
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/settings_male"
+            android:text="Erkek"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </RadioButton>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_weight="0.8"
+            android:text="Boy:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/settings_height"
+            android:inputType="number"
+            android:layout_weight="0.2"
+            android:textSize="25sp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent">
+
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:text="Kilo:"
+            android:layout_weight="0.8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/settings_weight"
+            android:inputType="number"
+            android:layout_weight="0.2"
+            android:textSize="25sp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent">
+
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_weight="0.8"
+            android:text="Yaş:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/settings_age"
+            android:inputType="number"
+            android:layout_weight="0.2"
+            android:textSize="25sp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent">
+
+        </EditText>
+    </LinearLayout>
+    <Switch
+        android:id="@+id/settings_mode"
+        android:text="Light Mode     "
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+    </Switch>
+
+    <Button
+        android:id="@+id/settings_register"
+        android:text="Kaydet"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+</LinearLayout>

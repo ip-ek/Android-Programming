@@ -14,3 +14,6 @@ Login giriş bilgileri:
 username: admin
 
 password: 0000
+
+
+APK Dosyası - ilk sayfada yer almaktadır.

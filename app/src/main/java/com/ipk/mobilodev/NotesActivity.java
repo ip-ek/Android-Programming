@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +21,9 @@ import java.util.ArrayList;
 
 public class NotesActivity extends AppCompatActivity {
     //Spinner liste ya da dizi ile çalışır. Bu yüzden adapter tanımlanır.
-    Spinner noteSelect;
+    EditText noteSelect,noteTxt;
     Button noteAdd, noteDelete, noteSave;
-    TextView noteTxt;
+    Spinner noteSpin;
 
     ArrayList<String> arr= new ArrayList<>();
     //Arrayi doldur.
@@ -40,17 +41,21 @@ public class NotesActivity extends AppCompatActivity {
         noteDelete=findViewById(R.id.note_delete);
         noteSave=findViewById(R.id.note_save);
         noteTxt=findViewById(R.id.note_txt);
+        noteSpin=findViewById(R.id.note_spinner);
+
 
         arrayAdapter= new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arr);
-        noteSelect.setAdapter(arrayAdapter);
+        noteSpin.setAdapter(arrayAdapter);
 
         createFile("admin.txt","");
         final String filename="admin";
 
-        noteSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        noteSelect.setCursorVisible(false);
+
+        noteSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), ""+noteSelect.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), ""+noteSpin.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -62,7 +67,8 @@ public class NotesActivity extends AppCompatActivity {
         noteAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFile(filename, noteTxt.getText().toString());
+                noteSelect.setCursorVisible(true);
+                createFile(noteSelect.getText().toString(), noteTxt.getText().toString());
             }
         });
 
@@ -76,9 +82,10 @@ public class NotesActivity extends AppCompatActivity {
         noteSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                createFile(noteSpin.getSelectedItem().toString(), noteTxt.getText().toString());
             }
         });
+
 
     }
 

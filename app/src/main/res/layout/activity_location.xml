@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    tools:context=".LocationActivity">
+
+    <Button
+        android:id="@+id/loc_pull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Konum Al">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/loc_text"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:isScrollContainer="true"
+        android:background="@color/colorPrimary"
+        android:layout_height="200dp">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/loc_send"
+        android:text="Gönder"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+</LinearLayout>

@@ -3,6 +3,17 @@
     package="com.ipk.mobilodev">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG"></uses-permission><!--arayanın telefon nosu null olmasın diye-->
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,19 +22,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.ipk.mobilodev.SensorActivity" />
-        <activity android:name="com.ipk.mobilodev.SettingsActivity" />
-        <activity android:name="com.ipk.mobilodev.PersonActivity" />
-        <activity android:name="com.ipk.mobilodev.NotesActivity" />
-        <activity android:name="com.ipk.mobilodev.MailActivity" />
-        <activity android:name="com.ipk.mobilodev.MainActivity">
+        <receiver android:name=".Receiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".TiltingActivity" />
+        <activity android:name=".LocationActivity" />
+        <activity android:name=".DownloadActivity" />
+        <activity android:name=".SensorActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".PersonActivity" />
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".MailActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ipk.mobilodev.MenuActivity" />
+        <activity android:name=".MenuActivity" />
     </application>
 
 </manifest>

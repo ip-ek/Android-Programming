@@ -15,24 +15,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
+        <TextView
+            android:background="@color/colorPrimary"
+            android:text=" Kayıtlı notlar: "
+            android:textColor="@color/colorBlack"
+            android:gravity="center"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="30dp">
+
+        </TextView>
         <Spinner
             android:id="@+id/note_spinner"
-            android:layout_weight="0.3"
+            android:layout_weight="0.7"
             android:background="@color/colorPrimary"
             android:layout_marginTop="15dp"
             android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:spinnerMode="dropdown">
+            android:layout_height="30dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp">
 
         </Spinner>
-        <Button
-            android:id="@+id/note_add"
-            android:layout_weight="0.4"
-            android:text="Yeni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </Button>
 
     </LinearLayout>
 
@@ -44,15 +50,21 @@
         android:background="@color/colorAccent">
 
         <EditText
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:id="@+id/note_select"
+            android:hint="Dosya Adı"
+            android:gravity="center"
+            android:background="#FFFFFF"
+            android:id="@+id/note_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         </EditText>
         <EditText
+            android:hint="Not"
+            android:gravity="center"
             android:layout_weight="0.7"
+            android:layout_marginTop="20dp"
             android:layout_margin="30dp"
             android:background="#FFFFFF"
             android:isScrollContainer="true"
@@ -61,7 +73,6 @@
             android:layout_height="match_parent">
 
         </EditText>
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -87,8 +98,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

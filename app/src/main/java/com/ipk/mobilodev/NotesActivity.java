@@ -34,12 +34,8 @@ public class NotesActivity extends AppCompatActivity {
     //Arrayi doldur.
     ArrayAdapter arrayAdapter;
 
-
-    //static int i=1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
@@ -67,8 +63,6 @@ public class NotesActivity extends AppCompatActivity {
         arrayAdapter= new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arr);
         noteSpin.setAdapter(arrayAdapter);
         createFile("admin","");
-        //tekkullanıcı için
-        final String filename="admin";
 
         noteSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

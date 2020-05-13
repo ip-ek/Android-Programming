@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG"></uses-permission><!--arayanın telefon nosu null olmasın diye-->
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -35,7 +34,7 @@
         <activity android:name=".SensorActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".PersonActivity" />
-        <activity android:name=".NotesActivity" />
+        <activity android:name=".NotesActivity" ></activity>
         <activity android:name=".MailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

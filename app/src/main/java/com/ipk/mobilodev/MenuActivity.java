@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    LinearLayout sensorButton, noteButton, mailButton, personButton, settingButton;
+    LinearLayout sensorButton, noteButton, mailButton, personButton, settingButton, downButton, locButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class MenuActivity extends AppCompatActivity {
         mailButton=findViewById(R.id.menu_email);
         personButton=findViewById(R.id.menu_users);
         settingButton=findViewById(R.id.menu_settings);
+        downButton=findViewById(R.id.menu_down);
+        locButton=findViewById(R.id.menu_loc);
 
         sensorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,22 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        downButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DownloadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        locButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
                 startActivity(intent);
             }
         });

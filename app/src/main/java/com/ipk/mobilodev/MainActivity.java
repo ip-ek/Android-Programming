@@ -2,7 +2,9 @@ package com.ipk.mobilodev;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class); //menuActivity
                 if(password.getText().toString().equals("0000") && userName.getText().toString().equals("admin")){
                     Toast.makeText(getApplicationContext(),"Giriş Başarılı",Toast.LENGTH_SHORT).show();
                     startActivity(intent);
@@ -55,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        if (getApplicationContext().checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission has not been granted, therefore prompt the user to grant permission
+           return;
+        }
 
     }
 

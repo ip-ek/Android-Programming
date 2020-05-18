@@ -197,8 +197,12 @@ public class NotesActivity extends AppCompatActivity {
             //bufferedReader satır satır okumaya yarar
             BufferedReader read = new BufferedReader(isr);
             noteName.setText(filename);
-            //burda tamamını okut belki enter basılıdır.
-            noteTxt.setText(read.readLine());
+            //burda tamamını okut belki enter basılıdır. okey
+            String tmp, context="";
+            while((tmp=read.readLine())!=null){
+                context=context+tmp+"\n";
+            }
+            noteTxt.setText(context);
             fis.close();
         }catch (Exception e){
             e.printStackTrace();

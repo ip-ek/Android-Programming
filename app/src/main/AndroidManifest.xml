@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CALL_LOG"></uses-permission><!--arayanın telefon nosu null olmasın diye-->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" /> <!-- arayanın telefon nosu null olmasın diye -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,10 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BroadcastActivity"></activity>
+
         <receiver android:name=".Receiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-                <action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
 
@@ -34,7 +36,7 @@
         <activity android:name=".SensorActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".PersonActivity" />
-        <activity android:name=".NotesActivity" ></activity>
+        <activity android:name=".NotesActivity" />
         <activity android:name=".MailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

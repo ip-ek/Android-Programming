@@ -12,6 +12,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -36,8 +37,9 @@ public class Receiver extends BroadcastReceiver {
                     Date timstamp=new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                     String formattedDate = sdf.format(timstamp);
-
-                    Toast.makeText(context, "Gelen Mesaj\n"+"Tel No: " + messages[i].getDisplayOriginatingAddress() + "\nMesaj" + messages[i].getMessageBody()+ "\nTarih:"+ formattedDate,  Toast.LENGTH_LONG).show();
+                    String str="Gelen Mesaj\n"+"Tel No: " + messages[i].getDisplayOriginatingAddress() + "\nMesaj: " + messages[i].getMessageBody()+ "\nTarih:"+ formattedDate;
+                    Toast.makeText(context, str,  Toast.LENGTH_LONG).show();
+                    writeText(context,str);
                 }
             }
         }else{  //aramadır (android.intent.action.PHONE_STATE)
@@ -51,7 +53,9 @@ public class Receiver extends BroadcastReceiver {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                         Date callStartTime = new Date();
                         String callTime = sdf.format(callStartTime);
-                        Toast.makeText(context, "Gelen Arama: \n"+ "Tel No: " + phone_number + "\nTarih: " + callTime, Toast.LENGTH_LONG).show();
+                        String str = "Gelen Arama: \n"+ "Tel No: " + phone_number + "\nTarih: " + callTime;
+                        Toast.makeText(context, str , Toast.LENGTH_LONG).show();
+                        writeText(context,str);
                     }
 
                 } catch (Exception e) {
@@ -60,6 +64,16 @@ public class Receiver extends BroadcastReceiver {
             }
         }
 
+    }
+
+    public void writeText(Context context, String str){
+        try{
+            FileOutputStream fos = context.openFileOutput("receiver.txt", Context.MODE_APPEND);
+            fos.write(("\n"+str+"\n").getBytes());
+            fos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

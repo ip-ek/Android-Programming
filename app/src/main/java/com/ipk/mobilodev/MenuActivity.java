@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.ipk.mobilodev.R;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    LinearLayout sensorButton, noteButton, mailButton, personButton, settingButton, downButton, locButton;
+    LinearLayout sensorButton, noteButton, mailButton, personButton, settingButton, downButton, locButton, bcastButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         settingButton=findViewById(R.id.menu_settings);
         downButton=findViewById(R.id.menu_down);
         locButton=findViewById(R.id.menu_loc);
+        bcastButton=findViewById(R.id.menu_broadcast);
 
         sensorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +78,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        bcastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BroadcastActivity.class);
                 startActivity(intent);
             }
         });

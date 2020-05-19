@@ -36,5 +36,14 @@
 
     </ImageView>
 
+    <Switch
+        android:layout_margin="30dp"
+        android:text="Alarm    "
+        android:layout_gravity="center"
+        android:id="@+id/startAlarmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Switch>
+
 
 </LinearLayout>

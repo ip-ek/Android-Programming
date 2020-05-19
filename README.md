@@ -16,4 +16,7 @@ username: admin
 password: 0000
 
 
-APK Dosyası - ilk sayfada yer almaktadır.
+APK Dosyası 3. versiyonu(son) - ilk sayfada yer almaktadır.
+
+3. Ödev tanıtım videosu:
+https://youtu.be/16YYWwL-wy8

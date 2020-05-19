@@ -2,31 +2,30 @@ package com.ipk.mobilodev;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.util.List;
-import java.util.Locale;
-
-//geofence eklenebilir
 
 public class LocationActivity extends AppCompatActivity implements LocationListener {
 
@@ -34,6 +33,10 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
     private double loc_latitude, loc_longitude;
     Button btn_pull,btn_send;
     TextView txt;
+
+    //ActivityRecog
+    private TextView stillCounterText, movingCounterText, tiltingCounterText, activity, confid;
+    private int stillCount, tiltingCount, movingCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,8 +47,18 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         btn_send=findViewById(R.id.loc_send);
         txt=findViewById(R.id.loc_text);
 
+        //activityRecog
+        stillCounterText = findViewById(R.id.loc_still);
+        movingCounterText = findViewById(R.id.loc_running);
+        tiltingCounterText=findViewById(R.id.loc_tilting);
+        activity=findViewById(R.id.loc_activity);
+        confid=findViewById(R.id.loc_confidence);
+
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION)!=PackageManager.PERMISSION_GRANTED) {
             return;
         }
         fusedLocationClient.getLastLocation()
@@ -89,7 +102,39 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
             }
         });
 
+        //activityrecog
+        /*startTrackingActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalBroadcastManager.getInstance(LocationActivity.this).registerReceiver(mActivityBroadcastReceiver,
+                        new IntentFilter("activity_intent"));
+
+                startService(new Intent(LocationActivity.this, ActivityDetectionService.class));
+            }
+        });*/
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("takip", "onStart():start ActivityDetectionService");
+        LocalBroadcastManager.getInstance(this).registerReceiver(mActivityBroadcastReceiver,
+                new IntentFilter("activity_intent"));
+
+        startService(new Intent(this, ActivityDetectionService.class));
+    }
+
+    BroadcastReceiver mActivityBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Log.d(TAG, "onReceive()");
+            if (intent.getAction().equals("activity_intent")) {
+                int type = intent.getIntExtra("type", -1);
+                int confidence = intent.getIntExtra("confidence", 0);
+                handleUserActivity(type, confidence);
+            }
+        }
+    };
 
     @Override
     public void onLocationChanged(Location location) {
@@ -98,6 +143,45 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    //activityrecog
+    private void handleUserActivity(int type, int confidence) {
+        String label = "Unknown";
+        switch (type) {
+            case DetectedActivity.ON_FOOT:
+            case DetectedActivity.WALKING:
+            case DetectedActivity.ON_BICYCLE:
+            case DetectedActivity.TILTING:{
+                label="Tilting";
+                break;
+            }
+            case DetectedActivity.IN_VEHICLE:
+            case DetectedActivity.RUNNING: {
+                label = "Moving";
+                break;
+            }
+            case DetectedActivity.STILL: {
+                label = "Still";
+                break;
+            }
+        }
+
+        Log.d("takip", "broadcast:onReceive(): Activity is " + label
+                + " and confidence level is: " + confidence);
+
+        activity.setText("Aktivite: "+label);
+        confid.setText("Yüzde: "+confidence+"");
+
+        if(label == "Moving" ){
+            movingCounterText.setText("Moving Counter: " + ++movingCount);
+        }else if(label == "Still"){
+            stillCounterText.setText("Still Counter: " + ++stillCount);
+        }else if(label == "Tilting"){
+            tiltingCounterText.setText("Tilting Counter: "+ ++tiltingCount);
+        }
+
 
     }
 
@@ -124,7 +208,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
+            //
             //    Activity#requestPermissions
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,

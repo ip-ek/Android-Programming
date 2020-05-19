@@ -7,10 +7,10 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" /> <!-- arayanın telefon nosu null olmasın diye -->
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BroadcastActivity"></activity>
+        <activity android:name=".ActivityDetectionService"></activity>
+        <activity android:name=".BroadcastActivity" />
 
         <receiver android:name=".Receiver">
             <intent-filter>
@@ -31,8 +32,9 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".AlarmReceiver" />
+        <service android:name=".ActivityIntentService" android:exported="false"/>
+        <service android:name=".ActivityDetectionService" android:enabled="true" android:exported="true"/>
 
-        <activity android:name=".TiltingActivity" />
         <activity android:name=".LocationActivity" />
         <activity android:name=".DownloadActivity" />
         <activity android:name=".SensorActivity" />

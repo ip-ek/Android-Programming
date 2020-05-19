@@ -35,7 +35,7 @@ public class DownloadActivity extends AppCompatActivity {
 
     Button btn;
     private ProgressBar progressBar;
-    TextView txt;
+    TextView txt, saat;
     ImageView img;
     Integer count =1;
 
@@ -72,6 +72,7 @@ public class DownloadActivity extends AppCompatActivity {
                 if(startAlarmBtn.isChecked()){
                     openPickerDialog(true);
                 }else{
+                    saat.setText("");
                     cancelAlarm();
                     Toast.makeText(getApplicationContext(), "Alarm İptal Edildi", Toast.LENGTH_SHORT).show();
                 }
@@ -83,7 +84,6 @@ public class DownloadActivity extends AppCompatActivity {
     private void openPickerDialog(boolean is24hour) {
 
         Calendar calendar = Calendar.getInstance();
-
         timePickerDialog = new TimePickerDialog(
                 DownloadActivity.this,
                 onTimeSetListener,
@@ -91,7 +91,6 @@ public class DownloadActivity extends AppCompatActivity {
                 calendar.get(Calendar.MINUTE),
                 is24hour);
         timePickerDialog.setTitle("Alarm Ayarla");
-
         timePickerDialog.show();
     }
     //alarm
@@ -114,6 +113,8 @@ public class DownloadActivity extends AppCompatActivity {
                 calSet.add(Calendar.DATE, 1);
             }
 
+            saat=findViewById(R.id.alarm_clock);
+            saat.setText(hourOfDay+":"+ minute);
             setAlarm(calSet);
         }};
     //alarm
